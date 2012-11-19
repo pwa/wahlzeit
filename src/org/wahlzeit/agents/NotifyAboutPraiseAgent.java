@@ -29,6 +29,7 @@ import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.UserLog;
 import org.wahlzeit.services.EmailAddress;
 import org.wahlzeit.services.EmailServer;
+import org.wahlzeit.services.EmailServerSingleAccessPoint;
 import org.wahlzeit.services.SysConfig;
 
 
@@ -117,7 +118,7 @@ public class NotifyAboutPraiseAgent extends Agent {
 		emailBody += cfg.getNotifyAboutPraiseEmailPostScriptum() + "\n\n----\n";
 		emailBody += cfg.getGeneralEmailFooter() + "\n\n";
 
-		EmailServer emailServer = EmailServer.getInstance();
+		EmailServer emailServer = EmailServerSingleAccessPoint.getInstance();
 		emailServer.sendEmail(from, to, emailSubject, emailBody);
 	}
 

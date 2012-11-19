@@ -20,7 +20,6 @@
 
 package org.wahlzeit.services;
 
-import javax.mail.*;
 
 /**
  * The NullEmailServer only pretends to send email.
@@ -28,19 +27,15 @@ import javax.mail.*;
  * @author dirkriehle
  *
  */
-public class NullEmailServer extends EmailServer {
-	
-	/**
-	 * 
-	 */
-	protected NullEmailServer() {
-		super();
+public class NullEmailServer implements EmailServer {
+
+	public void sendEmail(EmailAddress from, EmailAddress to, String subject,
+			String body) {
+		SysLog.logInfo("pretending to send email...");
 	}
-	
-	/**
-	 * 
-	 */
-	protected void doSendEmail(Message msg) {
+
+	public void sendEmail(EmailAddress from, EmailAddress to, EmailAddress bcc,
+			String subject, String body) {
 		SysLog.logInfo("pretending to send email...");
 	}
 	

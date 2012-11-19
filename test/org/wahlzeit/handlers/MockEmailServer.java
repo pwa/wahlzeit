@@ -20,6 +20,8 @@
 
 package org.wahlzeit.handlers;
 
+import javax.mail.Message;
+
 import junit.framework.*;
 import org.wahlzeit.services.*;
 
@@ -30,7 +32,7 @@ import org.wahlzeit.services.*;
  * @author dirkriehle
  *
  */
-public class MockEmailServer extends EmailServer {
+public class MockEmailServer extends AbstractEmailServer {
 
 	/**
 	 * 
@@ -57,10 +59,14 @@ public class MockEmailServer extends EmailServer {
 	/**
 	 * 
 	 */
+	@Override
 	public synchronized void sendEmail(EmailAddress from, EmailAddress to, EmailAddress bcc, String subject, String body) {
 		if (!fromEA.equals(from) || !toEA.equals(to) || !bccEA.equals(bcc) || !emailSubject.equals(subject) || !emailBody.equals(body)) {
 			Assert.fail("unexpected parameters passed to MockEmailServer.sendEmail");
 		}
 	}
 	
+	protected void doSendEmail(Message msg) {
+		SysLog.logInfo("pretending to send email...");
+	}
 }
