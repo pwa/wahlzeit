@@ -39,15 +39,15 @@ import javax.mail.internet.MimeMultipart;
  * represents the abstract default implementation of the email server and 
  * defines the inheritance interface for each subclass
  */
-//public abstract class EmailServerDefImpl implements EmailServerInterface{
-public abstract class AbstractEmailServer implements EmailServer{
+// FIXME: introduce an abstract intermediate class!
+public class AspectedEmailServer implements EmailServer{
 	
 	/**
 	 * 
 	 */
 	protected Session session = null;
 	
-	public AbstractEmailServer(){
+	public AspectedEmailServer(){
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "localhost");
 		session = Session.getDefaultInstance(properties, null);
@@ -120,5 +120,10 @@ public abstract class AbstractEmailServer implements EmailServer{
 	 * 
 	 * @methodproperties primitive, hook
 	 */
-	protected abstract void doSendEmail(Message msg) throws Exception;
+	//protected abstract void doSendEmail(Message msg) throws Exception;
+	protected void doSendEmail(Message msg) throws Exception
+	{
+		// FIXME: this is so ugly!
+		throw new Exception("must be overridden in subclass !!!");
+	}
 }

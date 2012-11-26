@@ -23,6 +23,8 @@ package org.wahlzeit.model;
 import java.util.*;
 import java.sql.*;
 
+import javax.mail.Message;
+
 import org.wahlzeit.services.*;
 
 
@@ -211,7 +213,8 @@ public class UserManager extends ObjectManager {
 	 * 
 	 */
 	public void emailWelcomeMessage(UserSession ctx, User user) {
-		EmailServer emailServer = EmailServerSingleAccessPoint.getInstance();
+		// EmailServer emailServer = EmailServerSingleAccessPoint.getInstance();
+		EmailServer emailServer = new AspectedEmailServer();
 
 		EmailAddress from = ctx.cfg().getAdministratorEmailAddress();
 		EmailAddress to = user.getEmailAddress();
@@ -231,7 +234,8 @@ public class UserManager extends ObjectManager {
 	 * 
 	 */
 	public void emailConfirmationRequest(UserSession ctx, User user) {
-		EmailServer emailServer = EmailServerSingleAccessPoint.getInstance();
+		// EmailServer emailServer = EmailServerSingleAccessPoint.getInstance();
+		EmailServer emailServer = new AspectedEmailServer();
 
 		EmailAddress from = ctx.cfg().getAdministratorEmailAddress();
 		EmailAddress to = user.getEmailAddress();

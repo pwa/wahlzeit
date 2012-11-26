@@ -1,6 +1,7 @@
 package org.wahlzeit.services;
 
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -14,12 +15,15 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class SmtpEmailServer extends AbstractEmailServer{
-
+public class SmtpEmailServer extends AspectedEmailServer{
+	
 	/**
 	 * 
 	 */
-	protected SmtpEmailServer() {
+	public SmtpEmailServer() {
+		
+		System.out.println("yeah i'm a smtp");
+		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "localhost");
 	    session = Session.getDefaultInstance(properties, null);
@@ -39,9 +43,6 @@ public class SmtpEmailServer extends AbstractEmailServer{
 		}
 	}
 	
-
-
-	
 	/**
 	 * 
 	 * @methodproperties primitive, hook
@@ -49,5 +50,4 @@ public class SmtpEmailServer extends AbstractEmailServer{
 	protected void doSendEmail(Message msg) throws Exception {
 		Transport.send(msg);
 	}
-	
 }

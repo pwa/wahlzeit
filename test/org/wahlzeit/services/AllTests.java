@@ -18,27 +18,24 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package org.wahlzeit;
+package org.wahlzeit.services;
 
 import junit.framework.*;
 
 /**
  * 
- * @author dirkriehle
+ * @author pwa
  * 
  */
 public class AllTests extends TestSuite {
-	
+
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(suite());
 	}
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
-		suite.addTest(org.wahlzeit.handlers.AllTests.suite());
-		suite.addTest(org.wahlzeit.model.AllTests.suite());
-		suite.addTest(org.wahlzeit.utils.AllTests.suite());
-		suite.addTest(org.wahlzeit.services.AllTests.suite());
+		suite.addTestSuite(EmailServerSingletonTest.class);
 		return suite;
 	}
 

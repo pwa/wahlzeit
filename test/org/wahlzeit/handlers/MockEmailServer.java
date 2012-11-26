@@ -32,7 +32,7 @@ import org.wahlzeit.services.*;
  * @author dirkriehle
  *
  */
-public class MockEmailServer extends AbstractEmailServer {
+public class MockEmailServer extends AspectedEmailServer {
 
 	/**
 	 * 
@@ -46,9 +46,16 @@ public class MockEmailServer extends AbstractEmailServer {
 	/**
 	 * 
 	 */
-	public MockEmailServer(EmailAddress from, EmailAddress to, EmailAddress bcc, String subject, String body) {
+	public MockEmailServer(/*EmailAddress from, EmailAddress to, EmailAddress bcc, String subject, String body*/) {
 		super();
-
+//		fromEA = from;
+//		toEA = to;
+//		bccEA = bcc;
+//		emailSubject = subject;
+//		emailBody = body;
+	}
+	
+	public void configure(EmailAddress from, EmailAddress to, EmailAddress bcc, String subject, String body){
 		fromEA = from;
 		toEA = to;
 		bccEA = bcc;
