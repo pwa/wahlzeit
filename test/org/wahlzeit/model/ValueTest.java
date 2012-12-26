@@ -187,4 +187,15 @@ public class ValueTest extends TestCase {
 		assertTrue(twentyTree == 23);
 	}
 
+	/**
+	 * 
+	 */
+	public void testCaseIdStringToInt() {
+		String s = CaseId.getFromInt(CaseId.getFromString("xhallo"));
+		assertTrue(s.equals("xhallo"));
+
+		String s2 = CaseId.getFromInt(CaseId.getFromString("xworld"));
+		assertTrue(s2.equals("xworld"));
+	}
+
 }
