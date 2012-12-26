@@ -54,7 +54,7 @@ public enum FlagReason implements EnumValue {
 	 * 
 	 */
 	private static void assertIsValidFlagReasonAsInt(int myValue) {
-		if ((myValue < 0) || (myValue > 3)) {
+		if ((myValue < 0) || (myValue > FlagReason.values().length)) {
 			throw new IllegalArgumentException("invalid FlagReason int: " + myValue);
 		}
 	}	
@@ -70,9 +70,22 @@ public enum FlagReason implements EnumValue {
 	 * 
 	 */
 	public static FlagReason getFromString(String reason) throws IllegalArgumentException {
+		assertValidReason(reason);
+		FlagReason res = null;
 		for (FlagReason fr : FlagReason.values()) {
 			if (valueNames[fr.asInt()].equals(reason)) {
-				return fr;
+				res = fr;
+				break;
+			}
+		}
+		return res;
+	}
+
+	
+	private static void assertValidReason(String reason) {
+		for (int i = 0; i < FlagReason.values().length; i++) {
+			if(valueNames[i].equals(reason)){
+				return;
 			}
 		}
 		
