@@ -138,4 +138,53 @@ public class ValueTest extends TestCase {
 		assert(test == PhotoId.getId(testString));
 	}
 
+	/**
+	 * 
+	 */
+	public void testCaseIdEquality() {
+		CaseId two = new CaseId(2);
+		CaseId two2 = new CaseId(2);
+		assertTrue(two.equals(two2));
+
+		CaseId three = new CaseId(3);
+
+		assertFalse(two.equals(three));
+
+		// the memory location ist still different,
+		// because sharing is not supported:
+		CaseId five = new CaseId(5);
+		CaseId five2 = new CaseId(5);
+		assertFalse(five == five2);
+	}
+
+	/**
+	 * 
+	 */
+	public void testCaseIdHashCodes() {
+		CaseId two = new CaseId(2);
+		CaseId two2 = new CaseId(2);
+		assertTrue(two.hashCode() == two2.hashCode());
+	}
+
+	/**
+	 * 
+	 */
+	public void testCaseIdNullId() {
+		CaseId one = new CaseId(1);
+		assertFalse(one.isNullId());
+
+		CaseId two = new CaseId(2);
+		assertFalse(two.isNullId());
+	}
+
+	/**
+	 * 
+	 */
+	public void testCaseIdIntToString() {
+		String s = CaseId.getFromInt(23);
+		int twentyTree = CaseId.getFromString(s);
+
+		assertTrue(twentyTree == 23);
+	}
+
 }
