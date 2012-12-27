@@ -54,7 +54,7 @@ public enum FlagReason implements EnumValue {
 	 * 
 	 */
 	private static void assertIsValidFlagReasonAsInt(int myValue) {
-		if ((myValue < 0) || (myValue > FlagReason.values().length)) {
+		if ((myValue < 0) || (myValue > FlagReason.values().length - 1)) {
 			throw new IllegalArgumentException("invalid FlagReason int: " + myValue);
 		}
 	}	
